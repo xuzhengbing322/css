@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+      <style>
+            .logo{
+                  width: 142px;
+                  height: 58px;
+            }
+
+            .logo h1 .logo-hd{
+                  display: block;
+                  width: 142px;
+                  height: 0;
+                  padding-top: 58px;
+                  background: url(img/logo.png) no-repeat 0 0/142px 58px;
+                  border: 1px solid #000;
+                  overflow: hidden;
+            }
+
+            .box1{
+                  border-top:1px solid transparent;
+                  width: 300px;
+                  height: 300px;
+                  background-color: #000;
+            }
+
+            .box2{
+                  width: 50px;
+                  height: 50px;
+                  margin: 0 auto;
+                  margin-top: 100px;
+                  background-color: orange;
+            }
+      </style>
+</head>
+<body>
+      <!-- 阴影
+      box-shadow: 水平位置(必)  垂直位置(必)  模糊距离  阴影的尺寸 阴影的颜色 阴影的种类;
+水平和垂直正像素值向下，负像素值向上。模糊距离像素有点类似于清晰度。阴影的尺寸是向四周扩展阴影的面积。
+如果把阴影的尺寸加到偏移量上，起到的效果相同。阴影的种类：inset即为阴影向内
+      遮挡阴影：如果盒子紧挨着其他盒子，那么盒子的阴影就会遮住其他的盒子。因此，要给相邻的元素添加
+position: relative; z-index:1。让其他盒子遮挡阴影。
+      兼容性：-webkit-box-shadow: ;值和box-shadow相同。-mox-box-shadow: ; -o-box-shadow:; 
+      -->
+
+      <!-- 圆角
+      border-radius: xpx; 常用值：像素 百分比。纯圆：宽高相同，50%。半圆：高度一半的像素。
+      兼容性：-webkit-border-radius: 50%  -mox-border-radius: ; -o-border-radius:
+      -->
+
+      <!-- 背景
+      background-color: ;背景颜色。
+      background-image: url(img/banner.jpg) ; 背景图片，图片会自动铺满盒子。
+      background-size: xpx xpx; 背景图片的宽高。值也可以用百分比。如果宽高不够就会重复显示图片。
+      background-repeat: xxx; 常用值：repeat：重复  no-repeat：重复  repeat-x：重复x轴  repeat-y：重复y轴
+      background-position: xxx xxx; 背景图片的位置。常用值：center 百分比 top/bottom/right/left
+      background-size:cover; cover：图片宽高比例不变，避免怪异缩放。图片铺满整个盒子的宽高，如果
+图片占满盒子后还有多余部分，则切除多余部分。contain：图片自身的宽高比不变，图片必须完整的显示在盒子中，
+不会剪裁图片。
+      background-position: center center;图片居中
+      background-attachment: xxx; 设置背景图片是否跟着背景图滚动。常用值：fixed背景图片不随着滚动条
+滚动  scroll背景图片随着滚动条滚动。
+      background顺序：background-image  background-repeat background-attachment
+background-position/background-size。  background: green url(img/bg.jpg) np-repeat fixed 0 0/100% 100%
+-->
+
+<!-- logo
+      logo通常采用div/a标签，而非img标签。这样样式更好，加载也很方便。通过padding-top来扩展盒子的高度，
+这样就能将淘宝网文字给挤下来。然后用overflow: hidden;隐藏文字。这样加载的时候就只显示图片。如果css加载
+不出来就显示文字。
+-->
+      <div class="logo">
+            <h1>
+                  <a href="" class="logo-hd">淘宝网</a>
+            </h1>
+      </div>
+
+      <!-- table 
+      <table border="1"> / border; 1px solid #000区别：border没有单元格边框。
+      <caption> / caption-side: bottom|top;
+      border-collapse: collapse; 合并单元格边框。
+      table-layout: fixed; 单元格宽度一致，不自适应文字。automatic：默认值，宽度自适应文字。
+      table tr td:nth-child(2){ text-align: center}
+      -->
+
+      <!-- 块级格式化上下文 block formatting contexts
+      控制元素的方案：1、普通流/文档流 normal flow：以html文档为基础，至上而下的去布局。内联元素水平
+排列，直到当前盒子的这一行被占满，再换行。块级元素会新起一行，然后进行布局。html默认普通流布局。
+2、浮动流布局 float：元素脱离普通流，变成浮动元素，然后进行左右偏移。常用于图文环绕和盒子左右移动。
+3、绝对定位 absolute positioning：元素脱离文档流，在文档流之上开辟新的图层。绝对定位元素不会影响 
+任何兄弟元素的布局。绝对定位由坐标决定。
+4、BFC：bfc元素：body  float:left/right  position:absolute/fixed  
+display:inline-block/table-ceil  overflow:hidden/auto/scroll。
+      普通的元素具有margin合并问题，BFC元素可以解决margin合并问题。其实这种解决方式不好，通过数值解决即可。
+      父盒子不设置高度，其中的子盒子是浮动元素，此时父盒子的高度就会塌陷。通过将父盒子变为BFC元素就能解决
+这个问题。但这种方式会额外添加样式，影响布局。因此清除浮动还是需要clear:both;
+      子盒子设置margin-top，会使父盒子连带具有margin-top属性。通过给父盒子添加
+border-top: 1px solid transparent;可以解决这个问题，也可以通过让父盒子变成BFC元素来解决这个问题。
+      浮动元素覆盖的问题也可以用BFC来解决。
+      -->
+
+      <!-- css书写顺序
+      显示属性：display  position  float  clear
+      自身属性：width  height   margin  padding  border   background
+      文本属性：color  font  text-align  vertical-align  whitespace
+      其他：
+
+      font简写
+      font-style  font-weight  font-size/line-height  font-family
+      font: italic bold 12px/20px "微软雅黑"
+
+      opacity: .8
+
+      margin padding border-width : 1px  2px  3px  4px
+
+      color: rgb    00-ff  ff00ff -> f0f
+
+      选择器的命名方法
+      选择器复合单词用中横线-。JS钩子ID用J_，复合单词用下划线_。选择器用小写。用英文不要用拼音。
+      尽量不要用直观命名法： bottom top left right
+      尽量用结构化命名：header头部 nav导航  sidebar侧栏  aside侧边 footer底部 figure图形
+      -->
+
+
+      <div class="box1">
+            <div class="box2"></div>
+      </div>
+</body>
+</html>

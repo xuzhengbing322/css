@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+      <!-- 内部样式表 -->
+      <style type="text/css">
+            div {
+                  background-color: green ; 
+            }
+
+            #box {
+                  width: 50px;
+                  height: 50px;
+                  background-color: blue;
+            }
+            .box{
+                  width: 50px;
+                  height: 50px;
+                  background-color: green;
+            }
+            h1{
+                  font-weight: normal;
+            }
+            [id="attr"] {
+                  width: 50px;
+                  height: 50px;
+                  background-color: yellow;
+            }
+            [id] {
+                  border: 3px solid black;
+            }
+            strong em {
+                  color: green;
+            }
+            strong .text {
+                 font-size: large;
+            }
+
+            /*权重：100*1 */
+            #div_id h1 {  
+                  color: pink;
+            }
+
+            /* 权重 10*10 */
+            .div_class .h1_class {
+                  color: purple;
+            }
+
+            /* 10*100*10 */
+            .div_class #h1_div .h1_class{
+                  color: red;
+            }
+
+            h1.title {
+                  color: blue;
+            }
+
+            .box {
+                  width: 200px;
+                  height: 200px;
+            }
+
+            .big-box {
+                  width: 200px;
+                  height: 200px;
+            }
+
+            .box.box1 {
+                  background-color: green;
+            }
+
+            .box.box2 {
+                  background-color: blue;
+            }
+
+            .big-box.box1 {
+                  background-color: purple;
+            }
+            
+            .big-box.box2 {
+                  background-color: red;
+            }
+
+            /* 取消聚焦的轮廓
+            outline：取消边框轮廓
+            */
+            input,
+            textarea {
+                  outline: none;
+            }
+      </style>
+      <!-- 外部样式表 href：css文件地址。href和src的区别：href是超文本引用，src是source。
+因此，非资源的东西用href，例如链接。资源的东西用src，例如图片。 -->
+      <link rel="stylesheet" href="./css/index.css" />
+</head>
+<body>
+      <!-- 浏览器组成部分：shell 内核
+浏览器/内核：chrome webkit。 safari webkit。 firefox  gecko。 IE  trident。  opera presto
+      内核：渲染rendering引擎/JS引擎。渲染引擎负责网页语法解析和渲染。不同内核的语法解析之后的渲染效果
+不同，因此存在样式的兼容性问题。
+      CSS cascading style sheet 层叠样式表
+      基本写法：选择器 {
+                  属性名: 属性值;
+                  }
+      样式优先级：内联样式 > 内部样式表 > 外部样式表。注意：项目中基本不写内联样式，一般写外部样式表。
+改变样式应用优先权的方式：在样式后面写!important，慎用。!important是最高级的权限。
+      浏览器加载页面的方式：从输入网址的那一刻开始，浏览器就根据网址下载相应的东西(html/css/js/img)。
+下载html的同时就开始语法解析，形成DOM tree，即html的树形结构。与此同时，浏览器新开一个线程用于下载css，
+下载完css后就进行语法解析，形成CSS Rule Tree。然后CSS Rule Tree与DOM tree合并构建成Render Tree。
+浏览器根据Render Tree进行布局渲染。如果用户有动态操作的话，就会重新绘制Render Tree并进行布局渲染。
+因此，html和css是同时下载的。
+      样式类封装：先将类写好，然后写html的时候直接加类名即可。
+      浏览器对父子选择器的匹配规则：从下到上，从右到左。避免过多的无效匹配，提高性能。
+      -->
+      <!-- 内联样式 -->
+      <div style="width: 100px; height: 100px; border: 1px solid black;"></div>
+
+      <!-- 选择器：
+      id选择器：具有唯一性，一个元素只有一个id，一个页面不能出现重复id。使用方式：#idValue。
+      class选择器：类选择器用于同一样式。一个类可以在一个页面中出现多次，使具有相同类选择器的元素，具有
+相同的样式。使用方式.className。
+      标签选择器：给页面中所有此标签都添加样式。常在初始化标签的时候使用。
+      *选择器：通配符选择器中定义的样式适用于此页面中的所有html标签。常用于清除所有p/hx/ul等标签的
+默认样式(外边距)。项目中不常用。
+      属性选择器：使用某个标签中的属性来定位标签，然后给它添加样式。常在input表单中使用。
+      派生选择器/父子选择器：从父级选择器中找符合要求的子选择器，也可以越级。可以是标签嵌套标签，标签嵌套类，
+标签嵌套id，类嵌套标签，类嵌套类，类嵌套id，id嵌套标签，id嵌套类。不能id嵌套id。类嵌套id没有意义。
+      并列选择器：不同标签用相同类名时，多个类名，就要使用并列选择器。
+      分组选择器：多选标签
+      选择器的优先级：!important > id选择器 > class选择器 ｜ 属性选择器 > 标签选择器 > *选择器。
+同级选择器安从上到下的顺序执行。
+      CSS权重关系：*/0  <  标签，伪元素/1  <  class，属性，伪类/10  <  id/100  <  内联样式/1000
+  <  !important/正无穷 
+      -->
+      <div id="box"></div>
+      <div class="box"></div>
+      <h1>123</h1>
+      <div id="attr"></div>
+
+      <strong class="content">
+            <em class="text">hello</em>
+      </strong>
+
+      <!-- 权重关系（基本不用） -->
+      <div id="div_id" class="div_class">
+            <h1 id="h1_id" class="h1_class">
+                  你好
+            </h1>
+      </div>
+
+      <!-- 并列选择器 -->
+      <h1 class="title">你好，sir</h1>
+      <p class="title">你好，web</p>
+
+      <!-- green blue purple red -->
+      <div class="box box1"></div>  
+      <div class="box box2"></div>
+      <div class="big-box box1"></div>
+      <div class="big-box box2"></div>
+
+      <!-- 分组选择器 -->
+      <input type="text" />
+      <br />
+      <textarea cols="30" rows="10"></textarea>      
+      
+</body>
+</html>
